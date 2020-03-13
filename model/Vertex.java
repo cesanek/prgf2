@@ -1,5 +1,6 @@
 package model;
 
+import transforms.Col;
 import transforms.Integer;
 import transforms.Point3D;
 
@@ -8,16 +9,21 @@ public class Vertex implements Vectorable<Vertex> {
         return position;
     }
 
-    public Integer getColor() {
+    public Col getColor() {
         return color;
+    }
+
+    public void setColor(Col color){
+        this.color=color;
+
     }
 
     //
     private final Point3D position;
-    private Integer color;
+    private Col color;
 
 
-    public Vertex(Point3D position, Integer color) {
+    public Vertex(Point3D position, Col color) {
         this.position = position;
         this.color = color;
     }

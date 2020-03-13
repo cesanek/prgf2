@@ -68,9 +68,6 @@ public class Rasterizer {
             }
 
 
-
-
-
             for (int x = Math.max((int) x1 + 1, 0); x < Math.min(x2, visibilityBuffer.getWidth() - 1); x++) {
                 double t = (x - x1) / (x2 - x1);
                 double z = z1 * (1 - t) + z2 * t;
@@ -110,18 +107,16 @@ public class Rasterizer {
     }
 
 
+    public Point3D getPlace(Point3D point3D) {
 
+        double x = (point3D.getX() + 1) * (visibilityBuffer.getWidth() - 1) / 2;
+        double y = (-point3D.getY() + 1) * (visibilityBuffer.getHeight() - 1) / 2;
 
-        public Point3D getPlace (Point3D point3D){
-
-            double x = (point3D.getX() + 1) * (visibilityBuffer.getWidth() - 1) / 2;
-            double y = (-point3D.getY() + 1) * (visibilityBuffer.getHeight() - 1) / 2;
-
-            return new Point3D(x, y, point3D.getZ(), point3D.getW());
-
-        }
-
+        return new Point3D(x, y, point3D.getZ(), point3D.getW());
 
     }
+
+
+}
 
 
