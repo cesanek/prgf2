@@ -3,9 +3,9 @@ package rendererOperation;
 import model.Vertex;
 import rasterOperation.VisibilityBuffer;
 import transforms.Point3D;
-import transforms.Vec3D;
 
-import java.beans.Visibility;
+
+
 
 public class Rasterizer {
     private VisibilityBuffer visibilityBuffer;

@@ -4,7 +4,7 @@ import model.Part;
 import model.Solid;
 import model.Vertex;
 import transforms.Mat4;
-import transforms.Point3D;
+import view.Raster;
 
 public class Renderer {
     private Mat4 model;
@@ -13,20 +13,20 @@ public class Renderer {
     private Raster raster;
     private Rasterizer rast;
 
-    public Renderer(Raster raster) {
-        this.raster = raster;
+    public Renderer(Raster rast, Rasterizer raszerizer) {
+        this.raster = rast;
+        this.rast = raszerizer;
+
 
     }
 
     public void renderer(Solid solid) {
-        //dodělat transformace todo
 
 
         for (Part part : solid.getPartBuffer()) {
             switch (part.getType()) {
                 case TRIANGLES:
                     for (int i = 0; i < part.getCount() - 1; i++) {
-                        //nutno spočítat index
                         int i1, i2, i3;
                         i1 = part.getStartIndex() + i * 3;
                         i2 = i1 + 1;
@@ -45,11 +45,10 @@ public class Renderer {
         }
     }
 
-    //pro vykreslení vrcholů chce zachytit 3 vrcholy
+
     public void drawTriangle(Vertex a, Vertex b, Vertex c) {
 
 
-        //seřazení vrcholů podle z souřadnice -Z
         a = new Vertex(a.getPosition().mul(model).mul(view).mul(projection), a.getColor());
         b = new Vertex(b.getPosition().mul(model).mul(view).mul(projection), b.getColor());
         c = new Vertex(c.getPosition().mul(model).mul(view).mul(projection), c.getColor());
@@ -125,8 +124,8 @@ public class Renderer {
 
             xc.setColor(c.getColor());
             xb.setColor(c.getColor());
-            rast.rasterizeTriangle(a,b,xb);
-            rast.rasterizeTriangle(a,xc,xb);
+            rast.rasterizeTriangle(a, b, xb);
+            rast.rasterizeTriangle(a, xc, xb);
             return;
 
         }
@@ -135,7 +134,38 @@ public class Renderer {
         rast.rasterizeTriangle(a, b, c);
 
     }
+
+
+    public Mat4 getModel() {
+        return model;
+    }
+
+    public void setModel(Mat4 model) {
+        this.model = model;
+    }
+
+    public Mat4 getProjection() {
+        return projection;
+    }
+
+    public void setProjection(Mat4 projection) {
+        this.projection = projection;
+    }
+
+    public void setView(Mat4 view) {
+        this.view = view;
+    }
+
+
+    public Mat4 getView() {
+        return view;
+    }
+
+
+    public void clear() {
+
+    }
 }
 
 
-}
+

@@ -1,6 +1,6 @@
 package rasterOperation;
 
-import transforms.Integer;
+
 import transforms.Col;
 
 import java.awt.*;
